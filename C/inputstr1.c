@@ -48,23 +48,61 @@ void delChar(char inp[], char charToDel)
 
     *out = '\0';
 }
+int mystrchr(char* delim, char str)
+{
+    while (*delim != 0)
+    {
+        if (*delim == str) return 1;
+        ++delim;
+    }
+    return 0;
+}
+char* mystrtok(char* str, const char* delim)
+{
+    static char* last = 0;
+    if (str) last = str;
+    if ((last == 0) || (*last == 0)) return 0;
+    char* c = last;
+    while (mystrchr(delim, *c)) ++c;
+    if (*c == 0) return 0;
+    char* start = c;
+    while (*c && (mystrchr(delim, *c) == 0)) ++c;
+    if (*c == 0)
+    {
+        last = c;
+        return start;
+    }
+    *c = 0;
+    last = c + 1;
+    return start;
+}
+int mystrlen(char* str)
+{
+    int res = 0;
+	while (*str !=0)
+	{
+        res++;
+        str++;
+	}
+    return res;
+}
 int main()
 {
     char* s = NULL;
     int len = 0;
     s = get_str(&len);
-    if (strlen(s) > 0)
+    if (mystrlen(s) > 0)
     {
         char seps[] = " ,\n";
         char* token;
 
-        token = strtok(s, seps);
+        token = mystrtok(s, seps);
         while (token != NULL)
         {
             char* temp = token;
             delChar(token, -48);
             int print = 1;
-            len = strlen(token);
+            len = mystrlen(token);
             for (int i = 0; i < len / 2; i++)
             {
                 if (token[i] != token[len - i - 1])
@@ -77,7 +115,7 @@ int main()
             {
                 printf("%s\n", temp);
             }
-            token = strtok(NULL, seps);
+            token = mystrtok(NULL, seps);
         }
     }
     printf("\n");
