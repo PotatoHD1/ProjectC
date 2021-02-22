@@ -139,9 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="123.c" />
     <ClCompile Include="inputstr.c" />
     <ClCompile Include="inputstr1.c" />
+    <ClCompile Include="kalendarek.cpp" />
     <ClCompile Include="Linux_inputstr.c" />
+    <ClCompile Include="Matrix.c" />
+    <ClCompile Include="squareMatrix.c" />
+    <ClCompile Include="surce.c" />
+    <ClCompile Include="taylor.cpp" />
+    <ClCompile Include="transponirovanie.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
